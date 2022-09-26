@@ -35,6 +35,7 @@ func TestCliAppCommand(t *testing.T) {
 				`{{.Name}} https://kubernetes.default.svc {{.Namespace}} default Synced Healthy <none> <none>`,
 				map[string]interface{}{"Name": Name(), "Namespace": DeploymentNamespace()})
 			assert.Contains(t, NormalizeOutput(output), expected)
+			//teetst
 		})
 }
 

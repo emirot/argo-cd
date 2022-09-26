@@ -7,6 +7,7 @@ import (
 	. "github.com/argoproj/gitops-engine/pkg/sync/common"
 	"github.com/stretchr/testify/assert"
 
+	"github.com/argoproj/argo-cd/v2/common"
 	. "github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
 	. "github.com/argoproj/argo-cd/v2/test/e2e/fixture"
 	. "github.com/argoproj/argo-cd/v2/test/e2e/fixture/app"
@@ -35,4 +36,24 @@ func TestCliAppCommand(t *testing.T) {
 				map[string]interface{}{"Name": Name(), "Namespace": DeploymentNamespace()})
 			assert.Contains(t, NormalizeOutput(output), expected)
 		})
+}
+
+func TestCliAppCommandVersion(t *testing.T) {
+	Given(t).
+		When().
+		And(func() {
+			output, err := RunCli("app", "version", "--short")
+			assert.NoError(t, err)
+			assert.Contains(t, output, common.GetVersion().Version)
+		})
+	// Expect(OperationPhaseIs(OperationSucceeded)).
+	// Expect(HealthIs(health.HealthStatusHealthy)).
+	// And(func(_ *Application) {
+	// 	output, err := RunCli("app", "list")
+	// 	assert.NoError(t, err)
+	// 	expected := Tmpl(
+	// 		`{{.Name}} https://kubernetes.default.svc {{.Namespace}} default Synced Healthy <none> <none>`,
+	// 		map[string]interface{}{"Name": Name(), "Namespace": DeploymentNamespace()})
+	// 	assert.Contains(t, NormalizeOutput(output), expected)
+	// })
 }

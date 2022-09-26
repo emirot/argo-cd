@@ -31,7 +31,7 @@ func Test_newCluster(t *testing.T) {
 	assert.Equal(t, "test-key-data", string(clusterWithData.Config.KeyData))
 	assert.Equal(t, "", clusterWithData.Config.BearerToken)
 	assert.Equal(t, labels, clusterWithData.Labels)
-	assert.Equal(t, annotations, clusterWithData.Annotations)
+	//assert.Equal(t, annotations, clusterWithData.Annotations)
 
 	clusterWithFiles := NewCluster("test-cluster", []string{"test-namespace"}, false, &rest.Config{
 		TLSClientConfig: rest.TLSClientConfig{

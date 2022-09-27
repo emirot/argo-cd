@@ -43,7 +43,7 @@ func TestCliAppCommandVersion(t *testing.T) {
 	Given(t).
 		When().
 		And(func() {
-			output, err := RunCli("app", "version", "--short")
+			output, err := RunCli("version", "--short")
 			assert.NoError(t, err)
 			assert.Contains(t, output, common.GetVersion().Version)
 		})
